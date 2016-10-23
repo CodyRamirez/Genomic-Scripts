@@ -1,0 +1,33 @@
+
+
+
+ CLUSTAL 2.1 Multiple Sequence Alignments
+
+
+Sequence format is Pearson
+Sequence 1: Scer        1261 bp
+Sequence 2: Sbay        1263 bp
+Sequence 3: Skud        1257 bp
+Sequence 4: Smik        1242 bp
+Start of Pairwise alignments
+Aligning...
+
+Sequences (1:2) Aligned. Score:  54
+Sequences (1:3) Aligned. Score:  55
+Sequences (1:4) Aligned. Score:  66
+Sequences (2:3) Aligned. Score:  53
+Sequences (2:4) Aligned. Score:  54
+Sequences (3:4) Aligned. Score:  65
+Guide tree file created:   [PRE1.dnd]
+
+There are 3 groups
+Start of Multiple Alignment
+
+Aligning...
+Group 1: Sequences:   2      Score:18128
+Group 2: Sequences:   3      Score:17802
+Group 3: Sequences:   4      Score:17358
+Alignment Score 30267
+
+CLUSTAL-Alignment file created  [PRE1.aln]
+
