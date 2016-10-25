@@ -6,7 +6,7 @@
 		python3 merge_variant_files.py <data directory> <output file name>
 
 		Example:
-			python3 merge_variant_files.py lyphoma_data/ all_variants_merged.tsv
+			python3 merge_variant_files.py lyphoma_data all_variants_merged.tsv
 """
 import sys, os, glob
 # sys.arg is a list containing 3 elements: The script, directory where the data is stored, desired name for output file
@@ -25,6 +25,8 @@ header = []
 variant_list = []
 # Using a foor loop to interate through all files ending with '.tsv' within a given directory
 for filename in glob.glob(os.path.join(data_directory, '*.tsv')):
+	# Initializing line_number variable to use downstream for exact row comparison
+	line_number = 0
 	# Opening all files as read only to access data
 	open_file = open(filename, "r")
 	# Grabbing the base name of the file to maintain column identity
@@ -56,13 +58,16 @@ for filename in glob.glob(os.path.join(data_directory, '*.tsv')):
 					# Adding the file names to the data columns in the header
 					header.append(base_name+line[y])
 			else:
-				# Iterating through potential variant info from files within the directory
-				for variant_info in variant_list:
-					# If the current line from the opened file matches the variant_info from the first file (seed file)
-					if line[0:5] == variant_info[0:5]:
-						for z in range(5,8):
-							# Appends the new values 'ref_count var_count VAF' for a given file 
-							variant_info.append(line[z])
+				# Comparing the current row to the exact corresponding row number within the files to maintain specificity and avoid another for loop
+				if line[0:5] == variant_list[line_number][0:5]:
+					for z in range(5,8):
+						# Appends the new values 'ref_count var_count VAF' for a given file 
+						variant_list[line_number].append(line[z])
+					# Incrementing line_number to maintain current with the row index
+					line_number += 1
+				else:
+					sys.exit("ERROR: Line " + str(line_number) + " within the seed file does not match the variant info columns.\nSeed file columns: " + str(variant_list[line_number][0:5]) + "\nCurrent file (" + filename + ") columns: " + str(line[0:5]) + "\nPlease address discrepancy and restart program.")
+
 # Prints header and corresponding values for variants
 print(*header, sep = '\t', file = output_fileobject)
 for variant_out in variant_list:
