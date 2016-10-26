@@ -25,13 +25,15 @@ first_file = True
 for filename in glob.glob(os.path.join(data_directory, '*.tsv')):
 	# Reading in the current data file as a DataFrame
 	open_file_df = pandas.read_table(filename)
+	# Sorting the DataFrame
+	open_file_df.sort_values(by = [list(open_file_df)[0], list(open_file_df)[1], list(open_file_df)[2], list(open_file_df)[3], list(open_file_df)[4]], inplace = True)
+	# Removing all duplicates
+	open_file_df.drop_duplicates(inplace = True)
 	# Grabbing the base name of the file to maintain column identity
 	base_name = filename.split('/')[1].split('r')[0]
 	# Renaming ref_count, var_count and VAF column values to maintain data identity 
 	for x in range(5,8):
 		open_file_df.rename(columns = {list(open_file_df)[x] : base_name+list(open_file_df)[x]}, inplace = True)
-	# Removing all duplicates
-	open_file_df.drop_duplicates(inplace = True)
 	# Identifing the first line
 	if first_file == True:
 		first_file = False
