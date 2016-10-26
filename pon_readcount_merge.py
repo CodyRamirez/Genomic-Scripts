@@ -3,10 +3,10 @@
 	"chr start stop ref var ref_count_1 var_count_1 VAF_1 ... ref_count_N var_count_N VAF_N"
 
 	Usage: 
-		python3 merge_variant_files.py <data directory> <output file name>
+		python3 pon_readcount_merge.py <data directory> <output file name>
 
 		Example:
-			python3 merge_variant_files.py lyphoma_data all_variants_merged.tsv
+			python3 pon_readcount_merge.py lyphoma_data all_variants_merged.tsv
 """
 import sys, os, glob
 # sys.arg is a list containing 3 elements: The script, directory where the data is stored, desired name for output file
