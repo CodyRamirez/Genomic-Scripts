@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
 """ Catenates "ref_count var_count VAF" columns of all files in a directory with .tsv into a single file as below:
 	"chr start stop ref var ref_count_1 var_count_1 VAF_1 ... ref_count_N var_count_N VAF_N"
-
 	Usage: 
 		python3 pon_readcount_merge.py <data directory> <output file name>
-
 		Example:
 			python3 pon_readcount_merge.py lyphoma_data all_variants_merged.tsv
 """
@@ -29,6 +27,8 @@ for filename in glob.glob(os.path.join(data_directory, '*.tsv')):
 	line_number = 0
 	# Opening all files as read only to access data
 	open_file = open(filename, "r")
+	# Sorting and deduplicating files
+	open_file = sorted(list(set(open_file)))
 	# Grabbing the base name of the file to maintain column identity
 	base_name = filename.split('/')[1].split('r')[0]
 	# Only allowing one file in to seed the output file
