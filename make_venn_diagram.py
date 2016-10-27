@@ -74,7 +74,7 @@ for line in read_file:
 fig = matplotlib.pyplot.figure()
 if (len(sys.argv) == 10):
 	matplotlib_venn.venn3([ds_1_var_count, ds_2_var_count, ds_3_var_count], set_labels = (data_set_1_label, data_set_2_label, data_set_3_label))
-	fig.savefig(data_set_1_label + '_' + data_set_2_label + '_' + data_set_3_label + '_venn_diagram.png')
+	fig.savefig(data_set_1_label + '_' + data_set_2_label + '_' + data_set_3_label + '_venn_diagram.pdf', format = 'pdf')
 else:
 	matplotlib_venn.venn2([ds_1_var_count, ds_2_var_count], set_labels = (data_set_1_label, data_set_2_label))
-	fig.savefig(data_set_1_label + '_' + data_set_2_label + '_venn_diagram.png')
+	fig.savefig(data_set_1_label + '_' + data_set_2_label + '_venn_diagram.png', format = 'pdf')
