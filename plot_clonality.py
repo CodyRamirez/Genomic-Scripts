@@ -59,7 +59,7 @@ for line in bam_readcount_output_file:
 	else:
 		print(line)
 
-figure_name = x_label + '_' + y_label + '_clonality_plot.png'
+figure_name = x_label + '_' + y_label + '_clonality_plot.pdf'
 fig = plt.figure()# Start a new figure
 if z_VAF_column_number != None:
 	plt.scatter(x_VAF_numbers, y_VAF_numbers, c = z_VAF_numbers, cmap = 'plasma_r')
@@ -71,4 +71,4 @@ plt.xlim(-5,100)
 plt.ylim(-5,100)
 plt.xlabel(x_label)# X-axis label
 plt.ylabel(y_label)# Y-axis label
-fig.savefig(figure_name)# Saving the figure
+fig.savefig(figure_name, format = 'pdf')# Saving the figure
