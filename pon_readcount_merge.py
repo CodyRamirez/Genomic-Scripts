@@ -53,7 +53,7 @@ for filename in glob.glob(os.path.join(data_directory, '*.tsv')):
 		for line in open_file:
 			line = line.split()
 			# Checking for the header
-			if line[0][0].isalpha() == True:
+			if line[0] == "chromosome_name":
 				for y in range(5,8):
 					# Adding the file names to the data columns in the header
 					header.append(base_name+line[y])
